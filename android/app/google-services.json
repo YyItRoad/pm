@@ -1,0 +1,72 @@
+{
+  "project_info": {
+    "project_number": "63181057452",
+    "firebase_url": "https://picture-master-b5453.firebaseio.com",
+    "project_id": "picture-master-b5453",
+    "storage_bucket": "picture-master-b5453.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63181057452:android:0c2f22fe7f0600fd",
+        "android_client_info": {
+          "package_name": "ink.boc.pm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "63181057452-f71m89a6t1tncc17irh7arvsoce4hhuq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ink.boc.pm",
+            "certificate_hash": "8fe4f70331d31c6d18b433c84c4a1a01cfa1055d"
+          }
+        },
+        {
+          "client_id": "63181057452-sie4cvceqdrebu1f9g8mf2lh6gv9lkil.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ink.boc.pm",
+            "certificate_hash": "8a45f1365f381ac2da9806ee30f86533a6651d06"
+          }
+        },
+        {
+          "client_id": "63181057452-boto18h5hljvrlmuvc0t3md6m5631963.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ink.boc.pm",
+            "certificate_hash": "28ffa0d38269a6ad2ab767588b4d7478b662fe97"
+          }
+        },
+        {
+          "client_id": "63181057452-3iet4n6hei8mo8kqiesmsl0kvjdph35s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7YAYneZnDcuw1tXhgT8b3_gBEn4R6ckI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "63181057452-3iet4n6hei8mo8kqiesmsl0kvjdph35s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "63181057452-h8t9dqj7sqkbbmmh4nj1dlm68ftq8boa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ink.boc.pm"
+              }
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-2118868664212790~5542322408"
+    }
+  ],
+  "configuration_version": "1"
+}

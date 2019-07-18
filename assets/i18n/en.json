@@ -1,0 +1,51 @@
+{
+    "test": "Test",
+    "app": {
+        "name": "Picture Master"
+    },
+    "motto": {
+        "discover": "Discover",
+        "appreciate": "Appreciate",
+        "feel": "Feel"
+    },
+    "login": {
+        "in": "Login In",
+        "out": "Login Out",
+        "choseway": "Choose login method:",
+        "google": "Google Login"
+    },
+    "actions": {
+        "intr": "Introduction",
+        "help": "Help",
+        "about": "About Us",
+        "ver": "Version",
+        "clear": "Clear Data",
+        "confirm": "Confirm",
+        "cancel": "Cancel"
+    },
+    "ad": {
+        "watch": "Watch the ad for free {coins} gold coins!",
+        "fail": "Ad Load Failed",
+        "success": "Ad Successed"
+    },
+    "tips": {
+        "login": {
+            "success": "Login Successed",
+            "fail": "Login Failed",
+            "online": "Already Login"
+        },
+        "save": {
+            "success": "Save Successed!",
+            "fail": "Save Failed!"
+        },
+        "gx": "Congratulations!"
+    },
+    "fish": {
+        "have": "You have already caught {fish} big fish, take a break and watch an ad!"
+    },
+    "coin": {
+        "lack": "Lack of gold coins"
+    },
+    "score": "Score",
+    "enter": "Enter"
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>刮刮乐</title>
+</head>
+<script>
+    function clickTest(args) {
+        window.flutter_inappbrowser.callHandler('diaoyong', 'hello', 1234, args);
+    }
+</script>
+
+<body>
+    <div onclick="clickTest()">测试点击</div>
+    <canvas style="border: 1px solid black; background: url(../images/google.png)" id="myImg"></canvas>
+    <script>
+        var canvas = document.getElementById('myImg');
+        var Img = document.getElementsByTagName('img')[0];
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerWidth;
+        var context = canvas.getContext("2d");
+        context.fillStyle = '#CCC';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        canvas.onmousedown = function () {
+            canvas.onmousemove = function (e) {
+                var e = e || window.event;
+                // e.clientX, e.clientY
+                context.globalCompositeOperation = 'destination-out';
+                context.beginPath();
+                context.arc(e.clientX, e.clientY, 20, 0, Math.PI * 2, false); //获取当前鼠标的横纵坐标作为填充的位置
+                context.fillStyle = "rgba(0,0,0,1)";
+                context.fill();
+            }
+        }
+        canvas.onmouseup = function () {
+            canvas.onmousemove = '';
+        }
+    </script>
+</body>
+
+</html>

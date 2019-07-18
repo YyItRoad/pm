@@ -1,0 +1,51 @@
+{
+    "test": "测试",
+    "app": {
+        "name": "Picture Master"
+    },
+    "motto": {
+        "discover": "发现",
+        "appreciate": "欣赏",
+        "feel": "感受"
+    },
+    "login": {
+        "in": "登入",
+        "out": "登出",
+        "choseway": "选择登入方式:",
+        "google": "谷歌登录"
+    },
+    "actions": {
+        "intr": "介绍说明",
+        "help": "帮助信息",
+        "about": "联系我们",
+        "ver": "版本",
+        "clear": "清除数据",
+        "confirm": "确定",
+        "cancel": "取消"
+    },
+    "ad": {
+        "watch": "观看广告免费获得{coins}金币!",
+        "fail": "广告加载失败",
+        "success": "广告播放成功"
+    },
+    "tips": {
+        "login": {
+            "success": "登录成功",
+            "fail": "登录失败",
+            "online": "已登录"
+        },
+        "save": {
+            "success": "保存成功!",
+            "fail": "保存失败!"
+        },
+        "gx": "恭喜!"
+    },
+    "fish": {
+        "have": "你已经捕了{fish}条大鱼，看个广告休息一下吧！"
+    },
+    "coin": {
+        "lack": "金币不足!"
+    },
+    "score": "积分",
+    "enter": "进入"
+}
