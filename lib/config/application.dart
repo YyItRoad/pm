@@ -1,14 +1,9 @@
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
+import 'package:pm/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluro/fluro.dart';
-import 'dart:io';
-
-const String Last_Login = 'last_login';
-const String User_Locale = 'user_locale';
-
-const String AdmobId_Android = "ca-app-pub-2118868664212790~5542322408";
-const String AdmobId_Ios = "ca-app-pub-2118868664212790~6161269507";
+import '../env.dart';
 
 class Application {
   factory Application() => _getInstance();
@@ -42,23 +37,17 @@ class Application {
   //打开时间
   DateTime openDate;
 
-  Locale locale = Locale('en');
+  Locale locale;
 
-  static final String version = '1.2';
+  static final String version = '1.2.1';
   //
   static final bool debug = bool.fromEnvironment("dart.vm.product") != true;
-
-  static final bool ios = Platform.isIOS;
 
   static var env;
 
   initApp() async {
-    var initAd = await FirebaseAdMob.instance
-        .initialize(appId: Platform.isAndroid ? AdmobId_Android : AdmobId_Ios);
-    print('initAd -> $initAd');
-
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    var last = prefs.get(Last_Login);
+    var last = prefs.get(Constants.lastLogin);
     if (last == null) {
       showGuide = true;
     } else {
@@ -68,8 +57,10 @@ class Application {
       showAd = false;
       showGuide = false;
     }
-    prefs.setString(Last_Login, this.openDate.toIso8601String());
-    locale = Locale(prefs.get(User_Locale));
+
+    prefs.setString(Constants.lastLogin, this.openDate.toIso8601String());
+    //初始化广告
+    await FirebaseAdMob.instance.initialize(appId: Env.getAdmobId());
   }
 
   static clear() async {

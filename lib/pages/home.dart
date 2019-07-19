@@ -36,9 +36,6 @@ class _HomePageState extends State<HomePage>
     });
     _getData();
     super.initState();
-    Future.delayed(Duration(milliseconds: 100), () async {
-      await FlutterI18n.refresh(context, Application.instance.locale);
-    });
   }
 
   Future _getMoreData() async {

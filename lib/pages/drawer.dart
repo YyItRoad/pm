@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pm/config/application.dart';
 import 'package:provider/provider.dart';
 import 'package:pm/provider/user.dart';
 import 'package:oktoast/oktoast.dart';
+
+import '../constants.dart';
 
 class ListItem {
   const ListItem({
@@ -89,6 +92,9 @@ class _DrawerPageState extends State<DrawerPage> {
     await FlutterI18n.refresh(
         context, Locale(local.languageCode == 'en' ? 'zh' : 'en'));
     Application.instance.locale = FlutterI18n.currentLocale(context);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(
+        Constants.userLocale, Application.instance.locale.languageCode);
     setState(() {});
   }
 
@@ -107,7 +113,6 @@ class _DrawerPageState extends State<DrawerPage> {
   @override
   Widget build(BuildContext context) {
     final EdgeInsets padding = MediaQuery.of(context).padding;
-
     User user = Provider.of<User>(context);
     return ModalProgressHUD(
       inAsyncCall: _isLoading,

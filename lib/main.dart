@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
   static FirebaseAnalytics analytics = FirebaseAnalytics();
   static FirebaseAnalyticsObserver observer =
       FirebaseAnalyticsObserver(analytics: analytics);
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -36,9 +35,7 @@ class MyApp extends StatelessWidget {
           navigatorObservers: [observer],
           localizationsDelegates: [
             FlutterI18nDelegate(
-                useCountryCode: false,
-                fallbackFile: Application.instance.locale.languageCode,
-                path: 'assets/i18n'),
+                useCountryCode: false, fallbackFile: 'en', path: 'assets/i18n'),
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate
           ],

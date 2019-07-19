@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
+import 'package:pm/config/application.dart';
 
 const resContext = {
   "intr": {
@@ -83,8 +84,7 @@ const resContext = {
 };
 
 String getLocale(BuildContext context) {
-  Locale local = FlutterI18n.currentLocale(context);
-  return local != null ? local.languageCode : 'en';
+  return Application.instance.locale.languageCode;
 }
 
 class IntrPage extends StatelessWidget {

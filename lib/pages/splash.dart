@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:firebase_admob/firebase_admob.dart';
+import 'package:pm/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../config/ad.dart';
 import '../config/application.dart';
 import '../swiper.dart';
@@ -30,9 +32,24 @@ class _SplashPageState extends State<SplashPage> {
     );
   }
 
+  _judeUserLocale(Locale locale) async {
+    String lng = locale.languageCode;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var localeCode = prefs.getString(Constants.userLocale);
+    if (localeCode == null) {
+      prefs.setString(Constants.userLocale, lng);
+    } else if (localeCode != lng) {
+      locale = Locale(localeCode);
+      await FlutterI18n.refresh(context, locale);
+    }
+    Application.instance.locale = locale;
+    debugPrint('MyApp locale --> ${Application.instance.locale}');
+  }
+
   @override
   void initState() {
     super.initState();
+    _judeUserLocale(FlutterI18n.currentLocale(context));
     _initAsync();
   }
 

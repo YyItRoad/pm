@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pm/config/application.dart';
+
+import '../constants.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 GoogleSignIn _googleSignIn = GoogleSignIn(
@@ -53,34 +56,47 @@ class User with ChangeNotifier {
 
   _updateScore(int s, {String key}) async {
     if (key == null) key = 'score';
-    this._data[key] = s;
     if (this.isLogin) {
+      if (_data == null) _data = Map();
+      this._data[key] = s;
       await Firestore.instance
           .collection('/user')
           .document(this.uid)
           .setData(this._data);
+    } else if (key == 'fishScore') {
+      this.fishScore = s;
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setInt(Constants.fishScore, this.fishScore);
     }
   }
 
-  _loadScore() {
+  _loadScore() async {
     if (this.isLogin) {
       Firestore.instance
           .collection('user')
           .document(this.uid)
           .snapshots()
           .listen((DocumentSnapshot snap) {
-        this._data = snap.data;
-        this.score = snap.data['score'] ??= 0;
-        this.fishScore = snap.data['fishScore'] ??= 0;
-        debugPrint('user --> $displayName ${snap.data}');
-        notifyListeners();
+        debugPrint('user --> $displayName ${snap.data} $snap');
+        if (snap.data != null) {
+          this._data = snap.data;
+          this.score = snap.data['score'] ??= 0;
+          this.fishScore = snap.data['fishScore'] ??= 0;
+          notifyListeners();
+        }
       });
+    } else {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      this.fishScore = prefs.getInt(Constants.fishScore);
     }
   }
 
   _autoLogin() async {
     _userInfo(await _auth.currentUser());
-    this._loadScore();
+
+    if (Application.instance.showGuide)
+      await this._updateScore(100, key: 'fishScore');
+    await this._loadScore();
   }
 
   _userInfo(FirebaseUser u) {
@@ -99,7 +115,6 @@ class User with ChangeNotifier {
     if (this.isLogin) return callback('tips.login.online');
     try {
       final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
       final AuthCredential credential = GoogleAuthProvider.getCredential(
@@ -125,6 +140,7 @@ class User with ChangeNotifier {
       await _googleSignIn.signOut();
     }
     this.isLogin = false;
+    await _loadScore();
     notifyListeners();
   }
 }
